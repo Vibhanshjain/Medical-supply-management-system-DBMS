@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, session, redirect, flash
-from flask_sqlalchemy import SQLAlchemy
 import json
+
+from flask import Flask, flash, redirect, render_template, request, session
+from flask_sqlalchemy import SQLAlchemy
 
 with open('config.json','r') as c:
     params = json.load(c)["params"]
@@ -14,8 +15,6 @@ app.secret_key = 'super-secret-key'
 
 if(local_server):
     app.config['SQLALCHEMY_DATABASE_URI'] = params['local_uri']
-
-
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = params['proud_uri']
 
